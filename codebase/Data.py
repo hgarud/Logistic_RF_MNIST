@@ -14,7 +14,7 @@ class MNIST_Data(object):
         with gzip.open(file_path, 'rb') as f:
                 labels = np.frombuffer(f.read(), np.uint8, offset=8)
 
-        return labels
+        return np.array(labels)
 
     def _load_imgs(self, file_name):
         file_path = self.base_dir + file_name
@@ -23,7 +23,7 @@ class MNIST_Data(object):
                 images = np.frombuffer(f.read(), np.uint8, offset=16)
         images = images.reshape(-1, self.img_size)
 
-        return images
+        return np.array(images)
 
 if __name__ == '__main__':
     mnist_loader = MNIST_Data(base_dir = "/home/hrishi/1Hrishi/ECE542_Neural_Networks/Homeworks/2/Data/", img_size = 784)
